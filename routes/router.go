@@ -36,4 +36,10 @@ var routes = Routes{
         "/",
         Index,
     },
+    Route{
+        "Status",
+        "GET",
+        "/status",
+        AppStatus,
+    },
 }
