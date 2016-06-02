@@ -3,14 +3,15 @@ package core
 import (
     "database/sql"
     "fmt"
-    _ "github.com/lib/pq"
     log "github.com/Sirupsen/logrus"
+	// Import pq client
+    _ "github.com/lib/pq"
 )
 
 const (
-    DB_USER     = "rentmycourt"
-    DB_PASSWORD = "rentmycourt"
-    DB_NAME     = "rentmycourt"
+    dbUser     = "rentmycourt"
+    dbPassword = "rentmycourt"
+    dbName     = "rentmycourt"
 )
 
 var db *sql.DB
@@ -19,11 +20,12 @@ func initConnection() {
     var err error
     fmt.Println("Init DB connection !")
     dbinfo := fmt.Sprintf("user=%s password=%s dbname=%s sslmode=disable",
-        DB_USER, DB_PASSWORD, DB_NAME)
+        dbUser, dbPassword, dbName)
     db, err = sql.Open("postgres", dbinfo)
     checkErr(err)
 }
 
+// Status method test reachibility of DB and connection
 func Status() string {
     log.Info("Retrieve status of DB connection")
     status := "Okay"

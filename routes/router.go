@@ -6,15 +6,16 @@ import (
     "github.com/gorilla/mux"
 )
 
-type Route struct {
+type route struct {
     Name        string
     Method      string
     Pattern     string
     HandlerFunc http.HandlerFunc
 }
 
-type Routes []Route
+type routesCollection []route
 
+// NewRouter present all routes of application
 func NewRouter() *mux.Router {
 
     router := mux.NewRouter().StrictSlash(true)
@@ -29,14 +30,14 @@ func NewRouter() *mux.Router {
     return router
 }
 
-var routes = Routes{
-    Route{
+var routes = routesCollection{
+    route{
         "Index",
         "GET",
         "/",
         Index,
     },
-    Route{
+    route{
         "Status",
         "GET",
         "/status",
